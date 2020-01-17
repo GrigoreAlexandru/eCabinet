@@ -1,1 +1,7 @@
-Grigilia/App.class
+Grigilia\Account.class
+Grigilia\App.class
+Grigilia\RegisterView.class
+Grigilia\DB.class
+Grigilia\DB$1.class
+Grigilia\Gui.class
+Grigilia\LoginView.class
