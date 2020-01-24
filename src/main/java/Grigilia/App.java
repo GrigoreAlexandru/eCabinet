@@ -1,13 +1,9 @@
 package Grigilia;
 
-import javax.swing.*;
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
+import java.util.HashSet;
 
 public class App {
+        public static Account loggedAcc;
 //    public static void main(String[] args) {
 ////            DB.init();
 //            // Account acc = new Account("test", "psdd");
@@ -15,7 +11,7 @@ public class App {
 //            // DB.saveAccount(acc);
 //            // DB.saveAccount(acc2);
 ////            System.out.println(login("test", "psdd"));
-//            new Gui();
+//            new Login();
 //
 //
 ////            DB.saveDb();
@@ -23,12 +19,25 @@ public class App {
 
 
     public static void main(String[] args) {
-       new Gui();
-
+        new Login(DB.init());
+        DB.saveDb();
 
     }
 
-    private static boolean login(String usr, String pwd) {
-        return DB.getAccounts().contains(new Account(usr, pwd));
+    public static boolean login(String usr, String pwd) {
+//        HashSet<Account> accounts = DB.getAccounts();
+        Account acc = DB.getAccount(new Account(usr, pwd));
+        if (acc != null){
+            loggedAcc = acc;
+            return true;
+        }
+        System.out.println("no accounts");
+        return false;
+    }
+
+    public static void register(String usr, String pwd) {
+        Account acc = new Account(usr, pwd);
+        DB.saveAccount(acc);
+        loggedAcc = acc;
     }
 }

@@ -14,26 +14,30 @@ import com.google.gson.reflect.TypeToken;
 
 class DB {
 
-    private static HashSet<Account> accounts;
+    private HashSet<Account> accounts;
+    private HashSet<Programare> programari;
     private static Gson gson = new GsonBuilder().create();
-    private static File accountsFile = new File("accounts");
-         
+    private static File dbFile = new File("db.json");
+    private static DB instanta;
 
-    public static void init() {
-        if (accountsFile.exists()) {
+
+    public static boolean init() {
+        if (dbFile.exists()) {
+            if (dbFile.length() == 0)
+                return false;
             Scanner sc;
             try {
-                sc = new Scanner(accountsFile);
+                sc = new Scanner(dbFile);
                 final String json = sc.nextLine();
-                java.lang.reflect.Type founderSetType = new TypeToken<HashSet<Account>>(){}.getType();
+                java.lang.reflect.Type founderSetType = new TypeToken<DB>() {
+                }.getType();
 
-                accounts = gson.fromJson(json, founderSetType);  
-                // accounts = gson.fromJson(json, HashSet.class);
-                if (accounts == null) {
-                    accounts = new HashSet<Account>();
+                instanta = gson.fromJson(json, founderSetType);
+                if (instanta == null) {
+                    instanta = new DB();
+                    instanta.accounts = new HashSet<Account>();
+                    instanta.programari = new HashSet<Programare>();
                 }
-                System.out.println(accounts);
-                System.out.println(accounts.size());
             } catch (final FileNotFoundException e) {
                 e.printStackTrace();
             }
@@ -41,23 +45,53 @@ class DB {
             saveDb();
             init();
         }
+        return true;
     }
 
     public static void saveAccount(final Account account) {
-        accounts.add(account);
+        instanta.accounts.add(account);
     }
 
+    public static Account getAccount(Account account) {
+        for (Account account1 : instanta.accounts) {
+            if (account1.equals(account))
+                return account1;
+        }
+        return null;
+    }
+
+
     public static HashSet<Account> getAccounts() {
-        return accounts;
+        return instanta.accounts;
+    }
+
+
+
+    public static void saveProgramare(final Programare programare) {
+        instanta.programari.add(programare);
+        saveDb();
+    }
+
+
+    public static HashSet<Programare> getProgramari() {
+        return instanta.programari;
+    }
+
+    public static void deleteProgramare(Programare value) {
+        instanta.programari.remove(value);
     }
 
     public static void saveDb() {
-        try (Writer writer = new FileWriter(accountsFile)) {
-            gson.toJson(accounts, writer);
+        try (Writer writer = new FileWriter(dbFile)) {
+            gson.toJson(instanta, writer);
         } catch (final IOException e) {
             e.printStackTrace();
         }
     }
 
-    
+    @Override
+    protected void finalize() throws Throwable {
+        super.finalize();
+        saveDb();
+    }
 }
