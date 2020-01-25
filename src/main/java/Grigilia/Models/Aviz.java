@@ -47,6 +47,6 @@ public class Aviz {
 
     @Override
     public String toString() {
-        return tip+" - "+numeDoctor+" \n "+numePacient+" - "+cnp;
+        return tip+" - \n "+numeDoctor+" \n "+numePacient+" - \n"+cnp;
     }
 }
