@@ -8,14 +8,18 @@ import java.io.Writer;
 import java.util.HashSet;
 import java.util.Scanner;
 
+import Grigilia.Models.Account;
+import Grigilia.Models.Aviz;
+import Grigilia.Models.Programare;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 
-class DB {
+public class DB {
 
     private HashSet<Account> accounts;
     private HashSet<Programare> programari;
+    private HashSet<Aviz> avize;
     private static Gson gson = new GsonBuilder().create();
     private static File dbFile = new File("db.json");
     private static DB instanta;
@@ -37,6 +41,7 @@ class DB {
                     instanta = new DB();
                     instanta.accounts = new HashSet<Account>();
                     instanta.programari = new HashSet<Programare>();
+                    instanta.avize = new HashSet<Aviz>();
                 }
             } catch (final FileNotFoundException e) {
                 e.printStackTrace();
@@ -66,7 +71,6 @@ class DB {
     }
 
 
-
     public static void saveProgramare(final Programare programare) {
         instanta.programari.add(programare);
         saveDb();
@@ -77,8 +81,21 @@ class DB {
         return instanta.programari;
     }
 
+    public static void saveAviz(Aviz aviz) {
+        instanta.avize.add(aviz);
+        saveDb();
+    }
+
+    public static HashSet<Aviz> getAvize() {
+        return instanta.avize;
+    }
+
     public static void deleteProgramare(Programare value) {
         instanta.programari.remove(value);
+    }
+
+    public static void deleteAviz(Aviz value) {
+        instanta.avize.remove(value);
     }
 
     public static void saveDb() {
@@ -89,9 +106,4 @@ class DB {
         }
     }
 
-    @Override
-    protected void finalize() throws Throwable {
-        super.finalize();
-        saveDb();
-    }
 }

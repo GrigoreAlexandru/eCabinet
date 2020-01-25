@@ -1,11 +1,13 @@
-package Grigilia;
+package Grigilia.Views;
+
+import Grigilia.App;
 
 import javax.swing.*;
 import java.awt.*;
 
 public class LoginView extends JFrame {
 
-    public LoginView(Login login) {
+    public LoginView(StartView login) {
         super("Login");
 
         JButton loginBtn = new JButton("Login");
