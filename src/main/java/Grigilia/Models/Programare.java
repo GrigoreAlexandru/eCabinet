@@ -41,6 +41,6 @@ public class Programare {
 
     @Override
     public String toString() {
-        return pacient + " - " + tip+" - "+cost+" lei";
+        return pacient + " - " + tip + " - " + cost + " lei";
     }
 }

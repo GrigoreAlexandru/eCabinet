@@ -2,7 +2,6 @@ package Grigilia.Views;
 
 import Grigilia.DB;
 import Grigilia.Models.Aviz;
-import Grigilia.Models.Programare;
 
 import javax.swing.*;
 import java.awt.*;
@@ -10,7 +9,7 @@ import java.awt.*;
 public class AvizNouView extends JFrame {
 
     public AvizNouView(AvizeView avizeView) {
-        super("StartView");
+        super("Aviz Nou");
 
         JButton save = new JButton("Salveaza");
 

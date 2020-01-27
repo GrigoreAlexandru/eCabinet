@@ -9,7 +9,7 @@ import java.awt.*;
 public class ProgramareNouaView extends JFrame {
 
     public ProgramareNouaView(ProgramariView programariView) {
-        super("StartView");
+        super("Programare Noua");
 
         JButton save = new JButton("Salveaza");
 
@@ -25,12 +25,11 @@ public class ProgramareNouaView extends JFrame {
                         new Programare(String.valueOf(dropdown.getSelectedItem()), nume.getText(), cst));
                 programariView.refresh();
                 ProgramareNouaView.this.dispose();
-            } catch (NumberFormatException ex){
+            } catch (NumberFormatException ex) {
                 JOptionPane.showMessageDialog(this, "Costul introdus nu este numar");
             }
-
-
         });
+
         Panel p = new Panel();
         p.setLayout(new GridLayout(4, 23, 10, 10));
         p.setBackground(Color.lightGray);

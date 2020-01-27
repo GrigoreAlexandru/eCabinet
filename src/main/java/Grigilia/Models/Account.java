@@ -1,6 +1,6 @@
 package Grigilia.Models;
 
-public class Account{
+public class Account {
     private String username, password;
 
     public Account(String username, String password) {

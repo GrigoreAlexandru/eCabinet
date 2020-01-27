@@ -1,13 +1,5 @@
 package Grigilia;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.Writer;
-import java.util.HashSet;
-import java.util.Scanner;
-
 import Grigilia.Models.Account;
 import Grigilia.Models.Aviz;
 import Grigilia.Models.Programare;
@@ -15,15 +7,18 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 
+import java.io.*;
+import java.util.HashSet;
+import java.util.Scanner;
+
 public class DB {
 
-    private HashSet<Account> accounts;
-    private HashSet<Programare> programari;
-    private HashSet<Aviz> avize;
     private static Gson gson = new GsonBuilder().create();
     private static File dbFile = new File("db.json");
     private static DB instanta;
-
+    private HashSet<Account> accounts;
+    private HashSet<Programare> programari;
+    private HashSet<Aviz> avize;
 
     public static boolean init() {
         if (dbFile.exists()) {

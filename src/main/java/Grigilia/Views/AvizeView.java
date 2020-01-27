@@ -1,20 +1,18 @@
 package Grigilia.Views;
 
-import Grigilia.App;
 import Grigilia.DB;
 import Grigilia.Models.Aviz;
-import com.itextpdf.text.*;
+import com.itextpdf.text.Document;
+import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Font;
-import com.itextpdf.text.pdf.PdfDocument;
+import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.PdfWriter;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.print.PrinterException;
-import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
-import java.io.FileReader;
 import java.util.HashSet;
 
 public class AvizeView extends JFrame {
@@ -28,7 +26,7 @@ public class AvizeView extends JFrame {
         JButton progNoua = new JButton("Aviz nou");
         JButton print = new JButton("Printeaza");
         JButton pdf = new JButton("PDF");
-        print.addActionListener( e -> {
+        print.addActionListener(e -> {
             Aviz aviz = list.getSelectedValue();
             JTextPane pane = new JTextPane();
             String par1 =

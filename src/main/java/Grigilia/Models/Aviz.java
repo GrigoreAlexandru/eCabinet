@@ -3,7 +3,7 @@ package Grigilia.Models;
 import java.util.Objects;
 
 public class Aviz {
-    private String numeDoctor,numePacient,tip;
+    private String numeDoctor, numePacient, tip;
     private int cnp;
 
     public Aviz(String numeDoctor, String numePacient, String tip, int cnp) {
@@ -47,6 +47,6 @@ public class Aviz {
 
     @Override
     public String toString() {
-        return tip+" - \n "+numeDoctor+" \n "+numePacient+" - \n"+cnp;
+        return tip + " - \n " + numeDoctor + " \n " + numePacient + " - \n" + cnp;
     }
 }

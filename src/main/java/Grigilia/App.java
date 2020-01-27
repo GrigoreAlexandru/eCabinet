@@ -2,11 +2,8 @@ package Grigilia;
 
 import Grigilia.Models.Account;
 import Grigilia.Views.StartView;
-import com.itextpdf.text.pdf.PdfDocument;
 
 public class App {
-
-    public static final String PDF_PATH = "/";
 
     public static void main(String[] args) {
         new StartView(DB.init());
