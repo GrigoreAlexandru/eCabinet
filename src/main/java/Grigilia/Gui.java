@@ -1,7 +1,6 @@
 package Grigilia;
 
 import Grigilia.Views.AvizeView;
-import Grigilia.Views.ProgramareNouaView;
 import Grigilia.Views.ProgramariView;
 
 import javax.swing.*;
@@ -10,13 +9,11 @@ import java.awt.*;
 public class Gui extends JFrame {
 
     public Gui() {
-        super("StartView");
+        super("eCabinet");
 
         JButton progs = new JButton("Programari");
         JButton avize = new JButton("Avize");
 
-//        TextField pw = new TextField(20);
-//        TextField un = new TextField(20);
         progs.addActionListener((e) -> new ProgramariView());
         avize.addActionListener((e) -> new AvizeView());
 
@@ -30,7 +27,7 @@ public class Gui extends JFrame {
         setVisible(true);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocation(300, 300);
-        setSize(400,300);
+        setSize(400, 300);
     }
 
     @Override
